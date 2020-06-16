@@ -34,6 +34,28 @@ void printList(struct Node* ptr)
     }
 }
 
+void insertNode(int dataInsert, int dataBefore)
+{
+    //insert Node with data x before node with data y
+    
+    struct Node* p = (struct Node*)malloc(sizeof(struct Node));
+    p->data = dataInsert;
+    p->next = NULL;
+    
+    struct Node* s = head;
+    struct Node* s1;
+    while(s->data!=dataBefore && s->next!=NULL)
+    {
+        s1 = s;
+        s = s->next;
+    }
+    if(s->data == dataBefore)
+    {
+        s1->next = p;
+        p->next = s;
+    }
+}
+
 int main()
 {
     appendNode(1);
@@ -42,6 +64,7 @@ int main()
     appendNode(4);
     appendNode(5);
     appendNode(6);
+    insertNode(100,6);
     printList(head);
     return 0;
 }
