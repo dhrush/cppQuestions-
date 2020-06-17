@@ -32,6 +32,7 @@ void printList(struct Node* ptr)
         std::cout<<ptr->data<<" ";
         ptr = ptr->next;
     }
+    std::cout<<"\n";
 }
 
 void insertNode(int dataInsert, int dataBefore)
@@ -56,6 +57,40 @@ void insertNode(int dataInsert, int dataBefore)
     }
 }
 
+void deleteKey(int x)
+{
+    struct Node* s = head;
+    struct Node* s1;
+    while(s->data!=x && s->next!=NULL)
+    {
+        s1=s;
+        s=s->next;
+    }
+    if(s->data == x)
+    {
+        s1->next = s1->next->next;
+        free(s);
+    }
+}
+
+void deleteNode(int position)
+{
+    struct Node* s = head;
+    struct Node* s1;
+    int location=1;
+    while(s->next != NULL && location != position)
+    {
+        s1=s;
+        s=s->next;
+        location++;
+    }
+    if(location==position)
+    {
+        s1->next = s1->next->next;
+        free(s);
+    }
+}
+
 int main()
 {
     appendNode(1);
@@ -65,6 +100,10 @@ int main()
     appendNode(5);
     appendNode(6);
     insertNode(100,6);
+    printList(head);
+    deleteKey(100);
+    printList(head);
+    deleteNode(3);
     printList(head);
     return 0;
 }
