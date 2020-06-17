@@ -91,6 +91,19 @@ void deleteNode(int position)
     }
 }
 
+void deleteList()
+{
+    struct Node* s=head;
+    struct Node* s1=s->next;
+    while(s->next!=NULL || s1->next!=NULL)
+    {
+        free(s);
+        s=s1->next;
+        free(s1);
+        s1=s->next;
+    }
+}
+
 int main()
 {
     appendNode(1);
@@ -101,9 +114,11 @@ int main()
     appendNode(6);
     insertNode(100,6);
     printList(head);
-    deleteKey(100);
+    deleteKey(100);         //deletes first occurence of node with specific key
     printList(head);
-    deleteNode(3);
+    deleteNode(3);          //deletes noe at given position
+    printList(head);
+    deleteList();           //deletes entire list
     printList(head);
     return 0;
 }
