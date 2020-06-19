@@ -104,6 +104,46 @@ void deleteList()
     }
 }
 
+void findLength(struct Node* head)
+{
+    int len;
+    struct Node* s = head;
+    if(s==NULL)
+        len=0;
+    else
+    {
+        while(s!=NULL)
+        {
+            len++;
+            s=s->next;
+        }
+    }
+    std::cout<<len;
+}
+
+void getMiddle(struct Node* head)
+{
+    struct Node* p = head;
+    struct Node* q = head;
+    if(head == NULL)
+        std::cout<<"-1";
+    else
+    {
+        int pCount=1;
+        while(p!=NULL && p->next!=NULL /*&& p->next->next!=NULL*/)
+        {
+            q = q->next;
+            p = p->next->next;
+            pCount += 2;
+        }
+        if(pCount%2 == 0)
+            std::cout<<q->next->data;
+        else
+            std::cout<<q->data;
+    }
+    
+}
+
 int main()
 {
     appendNode(1);
@@ -112,13 +152,17 @@ int main()
     appendNode(4);
     appendNode(5);
     appendNode(6);
-    insertNode(100,6);
+    appendNode(7);
+    /*insertNode(100,6);
     printList(head);
     deleteKey(100);         //deletes first occurence of node with specific key
     printList(head);
-    deleteNode(3);          //deletes noe at given position
+    deleteNode(3);*/          //deletes noe at given position
+    //deleteList();           //deletes entire list
     printList(head);
-    deleteList();           //deletes entire list
-    printList(head);
+    //findLength(head);
+    //printList(head);
+    getMiddle(head);
+
     return 0;
 }
