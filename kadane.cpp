@@ -5,23 +5,23 @@ using namespace std;
 
 int maxSumContSubarray(int a[], int sizeA)
 {
-    int meh = 0;
-    int msf = INT_MIN;
+    int curr_window = 0;
+    int max_so_far = INT_MIN;
     for(int i=0; i<sizeA; i++)
     {
-        meh += a[i];
+        curr_window += a[i];
         
-        if(meh < a[i])
+        if(curr_window < a[i])
         {
-            meh = a[i];
+            curr_window = a[i];
         }
         
-        if(msf < meh)
+        if(max_so_far < curr_window)
         {
-            msf = meh;
+            max_so_far = curr_window;
         }
     }
-    return msf;
+    return max_so_far;
 }
 
 int main() 
